@@ -10,5 +10,5 @@ I set up a watchr file (kata.watchr) so that the tests are run automatically eve
 
 The source of the kata is the Elementary Cellular Automata kata. You can find out more about one-dimentional, or 'elementary' cellular automata at [Wikipedia](http://en.wikipedia.org/wiki/Cellular_automata)
 
-I've also linked the [slides](https://) from the meeting. You can find out more about the London Code Dojo at our [homepage](http://www.meetup.com/London-Code-Dojo/).
+I've also linked the [slides](https://speakerdeck.com/u/sleepyfox/p/code-dojo-12-october-2012) from the meeting. You can find out more about the London Code Dojo at our [homepage](http://www.meetup.com/London-Code-Dojo/).
 

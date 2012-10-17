@@ -60,12 +60,12 @@ describe 'An array of cells with initial state 11111111 and rule 204', ->
     array = [ALIVE, ALIVE, ALIVE, ALIVE, ALIVE, ALIVE, ALIVE, ALIVE]
     expect(toString generate array, 204).toBe "11111111"
 
-array = []
-for i in [0..39]
-  if Math.random() > 0.5 then array[i] = ALIVE else array[i] = DEAD
-console.log toString array
-for i in [0..39]
-  newArray = generate array, 204
-  console.log toString newArray
-  array = newArray
+# main
+array = [0..39].map -> if Math.random() > 0.5 then ALIVE else DEAD 
 
+fn = (i, arr) ->
+  console.log toString arr
+  if i > 1
+    fn --i, generate arr, 204
+
+fn 40, array
