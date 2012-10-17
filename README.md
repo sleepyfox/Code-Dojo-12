@@ -12,3 +12,4 @@ The source of the kata is the Elementary Cellular Automata kata. You can find ou
 
 I've also linked the [slides](https://speakerdeck.com/u/sleepyfox/p/code-dojo-12-october-2012) from the meeting. You can find out more about the London Code Dojo at our [homepage](http://www.meetup.com/London-Code-Dojo/).
 
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported license - see [http://creativecommons.org/licenses/by-nc-sa/3.0/](http://creativecommons.org/licenses/by-nc-sa/3.0/)
