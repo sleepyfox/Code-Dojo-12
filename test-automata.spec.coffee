@@ -1,21 +1,10 @@
-[ALIVE, DEAD] = [1, 0]
+automata = require './automata'
 
-evolve = (current, left, right, rule = 204) ->
-  [BIT2, BIT1, BIT0] = [4, 2, 1]
-  bit = left * BIT2 + current * BIT1 + right * BIT0
-  if (rule & Math.pow 2, bit) > 0 then ALIVE else DEAD
-
-toString = (array, string = "") -> 
-  string = string + array[i] for i in [0..array.length - 1]
-  return string
-
-generate = (array, rule = 204, output = []) ->
-  l = array.length - 1
-  prev = (i) -> if i is 0 then l else i - 1
-  next = (i) -> if i is l then 0 else i + 1
-  for i in [0..l]
-    output[i] = evolve(array[i], array[prev i], array[next i], rule)
-  return output
+[ALIVE, DEAD] = [automata.ALIVE, automata.DEAD]
+evolve = automata.evolve
+toString = automata.toString
+generate = automata.generate
+manyGenerations = automata.manyGenerations
 
 describe 'Rule 204', ->
   it 'should compute the status of a dead cell with no neighbours next state to be dead', ->
@@ -60,12 +49,27 @@ describe 'An array of cells with initial state 11111111 and rule 204', ->
     array = [ALIVE, ALIVE, ALIVE, ALIVE, ALIVE, ALIVE, ALIVE, ALIVE]
     expect(toString generate array, 204).toBe "11111111"
 
-# main
-array = [0..39].map -> if Math.random() > 0.5 then ALIVE else DEAD 
+describe 'An array of cells with initial state 01101 and rule 24', ->
+  it 'should have turn one end state 01000', ->
+    array = [DEAD, ALIVE, ALIVE, DEAD, ALIVE]
+    expect(toString generate array, 24).toBe "01000"
+   
+describe 'An array of cells with initial state 01000 and rule 24', ->
+  it 'should have turn one end state 00100', ->
+    array = [DEAD, ALIVE, DEAD, DEAD, DEAD]
+    expect(toString generate array, 24).toBe "00100"
 
-fn = (i, arr) ->
-  console.log toString arr
-  if i > 1
-    fn --i, generate arr, 204
+  it 'should have many generations turn one end state 00100', ->
+    array = [DEAD, ALIVE, DEAD, DEAD, DEAD]
+    finalArray = manyGenerations 1, array, 24
+    expect(toString finalArray).toBe "00100"
 
-fn 40, array
+  it 'should have turn two end state 00010', ->
+    array = [DEAD, ALIVE, DEAD, DEAD, DEAD]
+    finalArray = manyGenerations 2, array, 24
+    expect(toString finalArray).toBe "00010"
+   
+  it 'should have turn three end state 00001', ->
+    array = [DEAD, ALIVE, DEAD, DEAD, DEAD]
+    finalArray = manyGenerations 3, array, 24
+    expect(toString finalArray).toBe "00001"
