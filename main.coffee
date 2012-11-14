@@ -7,6 +7,12 @@ LOG = true
 numberOfGenerations = process.argv[2] ? 20
 rule = process.argv[3] ? 24 
 
-startingArray = [0..79].map -> if Math.random() > 0.5 then ALIVE else DEAD 
+mostlyDead = ->
+  if Math.random() > 0.5
+    ALIVE 
+  else
+    DEAD 
+
+startingArray = [1..80].map mostlyDead
 
 manyGenerations numberOfGenerations, startingArray, rule, LOG
