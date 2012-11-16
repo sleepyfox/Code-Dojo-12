@@ -3,12 +3,12 @@ a = require './automata'
 [ALIVE, DEAD] = [a.ALIVE, a.DEAD]
 [evolve, toString, generate, manyGenerations] = [a.evolve, a.toString, a.generate, a.manyGenerations]
 
-xdescribe 'exports test', -> 
+describe 'exports test', -> 
   it 'test ALIVE value is imported', ->
     expect(ALIVE).toBe 1
 
 describe 'Rule 204', ->
-  it 'should compute the status of a dead cell with no neighbours next state to be dead', ->
+  it 'should compute the status of a dead cell with no alive neighbours next state to be dead', ->
     [cellState, left, right] = [DEAD, DEAD, DEAD]
     expect(evolve(cellState, left, right)).toBe DEAD
 
@@ -60,17 +60,17 @@ describe 'An array of cells with initial state 01000 and rule 24', ->
     array = [DEAD, ALIVE, DEAD, DEAD, DEAD]
     expect(toString generate array, 24).toBe '  X  '
 
-  it 'should have many generations turn one end state 00100', ->
+  it 'should have many generations, turn one end state 00100', ->
     array = [DEAD, ALIVE, DEAD, DEAD, DEAD]
     finalArray = manyGenerations 1, array, 24
     expect(toString finalArray).toBe '  X  '
  
-  it 'should have turn two end state 00010', ->
+  it 'should have many generations, turn two end state 00010', ->
     array = [DEAD, ALIVE, DEAD, DEAD, DEAD]
     finalArray = manyGenerations 2, array, 24
     expect(toString finalArray).toBe '   X '
    
-  it 'should have turn three end state 00001', ->
+  it 'should have many generations, turn three end state 00001', ->
     array = [DEAD, ALIVE, DEAD, DEAD, DEAD]
     finalArray = manyGenerations 3, array, 24
     expect(toString finalArray).toBe '    X'
