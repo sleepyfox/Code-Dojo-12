@@ -11,9 +11,9 @@ evolve = (current, left, right, rule = 204) ->
   else
     DEAD
 
-toString = (array, string = "") ->
+toString = (array) ->
   putX = (n) ->
-    if n is ALIVE then 'X' else ' '
+    if n is ALIVE then 'X' else '.'
   array.map(putX).join ''
 
 generate = (cellArray, rule = 204, output = []) ->

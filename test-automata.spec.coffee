@@ -1,9 +1,6 @@
-a = require './automata'
+{ ALIVE, DEAD, evolve, toString, generate, manyGenerations } = require './automata'
 
-[ALIVE, DEAD] = [a.ALIVE, a.DEAD]
-[evolve, toString, generate, manyGenerations] = [a.evolve, a.toString, a.generate, a.manyGenerations]
-
-describe 'exports test', -> 
+describe 'exports test', ->
   it 'test ALIVE value is imported', ->
     expect(ALIVE).toBe 1
 
@@ -43,8 +40,8 @@ describe 'Rule 204', ->
 describe 'An array of cells with initial state 00000000 and rule 204', ->
   it 'should have turn one end state 00000000', ->
     array = [DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD, DEAD]
-    expect(toString generate array, 204).toBe '        '
-  
+    expect(toString generate array, 204).toBe '........'
+
 describe 'An array of cells with initial state 11111111 and rule 204', ->
   it 'should have turn one end state 11111111', ->
     array = [ALIVE, ALIVE, ALIVE, ALIVE, ALIVE, ALIVE, ALIVE, ALIVE]
@@ -53,24 +50,24 @@ describe 'An array of cells with initial state 11111111 and rule 204', ->
 describe 'An array of cells with initial state 01101 and rule 24', ->
   it 'should have turn one end state 01000', ->
     array = [DEAD, ALIVE, ALIVE, DEAD, ALIVE]
-    expect(toString generate array, 24).toBe ' X   '
-   
+    expect(toString generate array, 24).toBe '.X...'
+
 describe 'An array of cells with initial state 01000 and rule 24', ->
   it 'should have turn one end state 00100', ->
     array = [DEAD, ALIVE, DEAD, DEAD, DEAD]
-    expect(toString generate array, 24).toBe '  X  '
+    expect(toString generate array, 24).toBe '..X..'
 
   it 'should have many generations, turn one end state 00100', ->
     array = [DEAD, ALIVE, DEAD, DEAD, DEAD]
     finalArray = manyGenerations 1, array, 24
-    expect(toString finalArray).toBe '  X  '
- 
+    expect(toString finalArray).toBe '..X..'
+
   it 'should have many generations, turn two end state 00010', ->
     array = [DEAD, ALIVE, DEAD, DEAD, DEAD]
     finalArray = manyGenerations 2, array, 24
-    expect(toString finalArray).toBe '   X '
-   
+    expect(toString finalArray).toBe '...X.'
+
   it 'should have many generations, turn three end state 00001', ->
     array = [DEAD, ALIVE, DEAD, DEAD, DEAD]
     finalArray = manyGenerations 3, array, 24
-    expect(toString finalArray).toBe '    X'
+    expect(toString finalArray).toBe '....X'

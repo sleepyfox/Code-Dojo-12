@@ -1,18 +1,13 @@
-a = require './automata'
-
-[ALIVE, DEAD] = [a.ALIVE, a.DEAD]
-[toString, generate, manyGenerations] = [a.toString, a.generate, a.manyGenerations]
+{ ALIVE, DEAD, evolve, toString, generate, manyGenerations } = require './automata'
 
 LOG = true
+CELL_ARRAY_WIDTH = 80
 numberOfGenerations = process.argv[2] ? 20
-rule = process.argv[3] ? 24 
+rule = process.argv[3] ? 24
 
 mostlyDead = ->
-  if Math.random() > 0.5
-    ALIVE 
-  else
-    DEAD 
+  if Math.random() > 0.3 then ALIVE else DEAD
 
-startingArray = [1..80].map mostlyDead
+startingArray = [1..CELL_ARRAY_WIDTH].map mostlyDead
 
 manyGenerations numberOfGenerations, startingArray, rule, LOG
