@@ -8,9 +8,12 @@ and you can run the tests with:
 
     npm test
 
-I set up a watchr file (kata.watchr) so that the tests are run automatically every time you save a file in your editor, simply run watchr (if installed) with:
+# Different classes of Rule
+* Class 1: Cellular automata which rapidly converge to a uniform state. Examples are rules *0*, 32, 160 and 232.
+* Class 2: Cellular automata which rapidly converge to a repetitive or stable state. Examples are rules *24*, 108, 218 and 250.
+* Class 3: Cellular automata which appear to remain in a random state. Examples are rules 22, 30, 126, *150*, 182.
+* Class 4: Cellular automata which form areas of repetitive or stable states, but also form structures that interact with each other in complicated ways. An example is rule *110*. Rule 110 has been shown to be capable of universal computation.
 
-    watchr kata.watchr
 
 The source of the kata is the Elementary Cellular Automata kata. You can find out more about one-dimentional, or 'elementary' cellular automata at [Wikipedia](http://en.wikipedia.org/wiki/Cellular_automata)
 
