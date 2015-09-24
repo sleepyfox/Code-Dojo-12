@@ -2,7 +2,7 @@ ALIVE = 1
 DEAD = 0
 STARTING_GENERATION = 0
 
-evolve = (current, left, right, rule = 204) ->
+evolve = (current, left, right, rule = 24) ->
   [BIT2, BIT1, BIT0] = [4, 2, 1]
   bitIndex = (left * BIT2) + (current * BIT1) + (right * BIT0)
 
@@ -16,7 +16,7 @@ toString = (array) ->
     if n is ALIVE then 'X' else '.'
   array.map(putX).join ''
 
-generate = (cellArray, rule = 204, output = []) ->
+generate = (cellArray, rule = 24, output = []) ->
   length = cellArray.length - 1
   prev = (i) ->
     if i is 0 then length else i - 1

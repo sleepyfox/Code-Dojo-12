@@ -9,7 +9,8 @@
     "jasmine-node": "^1.14.5"
   },
   "scripts": {
-    "test": "jasmine-node --coffee test-*"
+    "test": "jasmine-node --coffee test-*",
+    "start": "coffee main.coffee"
   },
   "repository": {
     "type": "git",

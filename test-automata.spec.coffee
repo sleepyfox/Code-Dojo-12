@@ -1,41 +1,37 @@
 { ALIVE, DEAD, evolve, toString, generate, manyGenerations } = require './automata'
 
-describe 'exports test', ->
-  it 'test ALIVE value is imported', ->
-    expect(ALIVE).toBe 1
-
-describe 'Rule 204', ->
+describe 'An Elementary Cellular Automata with rule 24', ->
   it 'should compute the status of a dead cell with no alive neighbours next state to be dead', ->
     [cellState, left, right] = [DEAD, DEAD, DEAD]
-    expect(evolve(cellState, left, right)).toBe DEAD
-
-  it 'should compute the next status of a dead cell with an alive left neighbour to be dead', ->
-    [cellState, left, right] = [DEAD, ALIVE, DEAD]
     expect(evolve(cellState, left, right)).toBe DEAD
 
   it 'should compute the next status of a dead cell with an alive right neighbour to be dead', ->
     [cellState, left, right] = [DEAD, DEAD, ALIVE]
     expect(evolve(cellState, left, right)).toBe DEAD
 
+  it 'should compute the next status of a dead cell with an alive left neighbour to be alive', ->
+    [cellState, left, right] = [DEAD, ALIVE, DEAD]
+    expect(evolve(cellState, left, right)).toBe ALIVE
+
   it 'should compute the next status of a dead cell with 2 alive neighbours to be dead', ->
     [cellState, left, right] = [DEAD, ALIVE, ALIVE]
     expect(evolve(cellState, left, right)).toBe DEAD
 
-  it 'should compute the status of a live cell with no neighbours next state to be alive', ->
+  it 'should compute the status of a live cell with no neighbours next state to be dead', ->
     [cellState, left, right] = [ALIVE, DEAD, DEAD]
-    expect(evolve(cellState, left, right)).toBe ALIVE
-
-  it 'should compute the status of a live cell with with an alive left neighbour to be alive', ->
-    [cellState, left, right] = [ALIVE, ALIVE, DEAD]
-    expect(evolve(cellState, left, right)).toBe ALIVE
+    expect(evolve(cellState, left, right)).toBe DEAD
 
   it 'should compute the status of a live cell with with an alive right neighbour to be alive', ->
     [cellState, left, right] = [ALIVE, DEAD, ALIVE]
     expect(evolve(cellState, left, right)).toBe ALIVE
 
-  it 'should compute the status of a live cell with with 2 alive neighbours to be alive', ->
+  it 'should compute the status of a live cell with with an alive left neighbour to be dead', ->
+    [cellState, left, right] = [ALIVE, ALIVE, DEAD]
+    expect(evolve(cellState, left, right)).toBe DEAD
+
+  it 'should compute the status of a live cell with with 2 alive neighbours to be dead', ->
     [cellState, left, right] = [ALIVE, ALIVE, ALIVE]
-    expect(evolve(cellState, left, right)).toBe ALIVE
+    expect(evolve(cellState, left, right)).toBe DEAD
 
 describe 'An array of cells with initial state 00000000 and rule 204', ->
   it 'should have turn one end state 00000000', ->
